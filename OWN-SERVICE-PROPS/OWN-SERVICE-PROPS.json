@@ -1,0 +1,24 @@
+{
+  "id": "storage",
+  "name": "Fractera Storage",
+  "shortDescription": "The object storage of the node: pictures, videos and documents of every element with a stable address for each file, thumbnails, blurred placeholders, video trimming and site icon sets.",
+  "longDescription": "The object storage of the node, split from the data layer in step 550. Elements upload files through /media/upload (up to 200 MB) and get a permanent address; for a picture the element keeps its size and a tiny blurred copy for a placeholder. It measures and trims videos on the server (ffmpeg), makes thumbnails and builds a full icon set of a site from one image. Consumers keep calling /media on the database element of the node, which passes the request here as it is; the address of a stored file stays on the database element.",
+  "accepts": "The node data key (X-Data-Secret) or a privileged session; multipart uploads, JSON bodies.",
+  "returns": "JSON records of files and icon sets; the files themselves.",
+  "designSkill": "impeccable",
+  "isFracteraArchitecture": true,
+  "framework": "next",
+  "elementType": "native",
+  "visibility": "node",
+  "calls": [
+    "auth",
+    "data",
+    "config",
+    "design"
+  ],
+  "messengers": {
+    "h2a": true,
+    "h2h": false,
+    "a2a": false
+  }
+}

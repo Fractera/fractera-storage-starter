@@ -1,0 +1,77 @@
+{
+  "title": "Fractera Storage — files and images of your node",
+  "description": "Object storage of the node: elements upload pictures, videos and documents and get a stable address for each file. Programs reach it with the node key.",
+  "keywords": "",
+  "blocks": [
+    {
+      "kind": "block-hero-centered",
+      "pill": "Agentic engineering infrastructure",
+      "title": "Files and images of your node",
+      "description": "Elements upload pictures, videos and documents here and get a stable address for each file. Programs talk to it with the node key.",
+      "bid": "pb7gp"
+    },
+    {
+      "kind": "text-list",
+      "items": [
+        "Uploads up to 200 MB",
+        "Thumbnails, blurred placeholders and video trimming on the server",
+        "A full icon set for a site from one image"
+      ],
+      "bid": "rkmqk"
+    },
+    {
+      "kind": "text-small",
+      "text": "/media · sharp · ffmpeg",
+      "bid": "b3yau"
+    },
+    {
+      "kind": "block-section-head",
+      "id": "does",
+      "badge": "Doors",
+      "title": "What it does",
+      "bid": "f7o3z"
+    },
+    {
+      "kind": "text-h3",
+      "text": "Upload",
+      "bid": "rnjfx"
+    },
+    {
+      "kind": "text-p",
+      "text": "A file goes in once and gets a permanent address. For a picture the element keeps its size and a tiny blurred copy, so a page can show a placeholder while the picture loads.",
+      "bid": "hxzs3"
+    },
+    {
+      "kind": "text-h3",
+      "text": "Video",
+      "bid": "qfr6s"
+    },
+    {
+      "kind": "text-p",
+      "text": "The server measures the length of a video and trims it to the part you keep, copying the streams when it can and re-encoding only when the cut falls between keyframes.",
+      "bid": "w85fm"
+    },
+    {
+      "kind": "text-h3",
+      "text": "Icons",
+      "bid": "raa90"
+    },
+    {
+      "kind": "text-p",
+      "text": "From one image the element makes the favicon, the app icons and the picture shown when a page is shared.",
+      "bid": "bwxzy"
+    },
+    {
+      "kind": "block-section-head",
+      "id": "address",
+      "badge": "Address",
+      "title": "The same address as before",
+      "bid": "clnnc"
+    },
+    {
+      "kind": "text-p",
+      "text": "Elements still call /media on the database element, and the database element passes the request here. Stored files keep their old addresses.",
+      "bid": "v49ay"
+    }
+  ]
+}
