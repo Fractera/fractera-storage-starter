@@ -31,19 +31,19 @@ merges it with your commits, and the element's agent resolves a conflict.
 Every door but `/health` needs the node data key (`X-Data-Secret`, the same `DATA_SECRET` the installer writes to every
 element) or a privileged session (architect, admin, agent) checked by the node's auth element. Through the Cloudflare tunnel
 (`cf-ray`) every door answers 404, with a key or without. The lock is `lib/data-store/auth.mjs`, word for word the database's.
-An element's own key (`X-Element-Key`, node step 654-1 — the database README tells how it is made and checked) opens no door here yet:
-it gets 403 `not-for-an-element` until node step 654-2 teaches this element whose file is whose; a key that does not match gets 401.
+An element's own key (`X-Element-Key`, node step 654-1 — the database README tells how it is made and checked) opens the media doors on
+that element's own records and the node's public ones (see «Whose file»); a key that does not match gets 401.
 
 | Door | Method | Gives |
 |---|---|---|
 | `/health` | GET | `{ ok: true }`, no key |
 | `/capabilities` | GET | the doors of this element |
-| `/media` | GET | `{ ok, items }` — every file record, newest first |
-| `/media/upload` | POST | multipart, field `file` (≤ 200 MB); optional `title`, `description`, `crop` (JSON `{x,y,w,h}`), `crop_mode` |
-| `/media/:id` | PATCH | `{ title?, description?, crop_mode? }` |
+| `/media` | GET | `{ ok, items }` — newest first: the node key — every record (`?owner=<id>` — one owner's), an element key — its own and the node's public ones |
+| `/media/upload` | POST | multipart, field `file` (≤ 200 MB); optional `title`, `description`, `crop` (JSON `{x,y,w,h}`), `crop_mode`, `visibility` (`public` by default or `private`) |
+| `/media/:id` | PATCH | `{ title?, description?, crop_mode?, visibility? }`; `owner` (node or an element id) by the node key only |
 | `/media/:id` | DELETE | the file and its record |
 | `/media/:id/trim` | POST | `{ start, end }` seconds of a video to keep (ffmpeg, stream copy, re-encode when the cut misses a keyframe) |
-| `/media/:id/file` | GET | the file (ETag from size and time, revalidated on every use) |
+| `/media/:id/file` | GET | the file (ETag from size and time, revalidated on every use); a private one only with `?private=1` |
 | `/media/:id/thumb` | GET | a 200×200 JPEG thumbnail of a picture |
 | `/media/generate-icons` | POST | `{ media_id }` → favicon, app icons, share picture, manifest |
 | `/media/icons`, `/media/icons/current` | GET | icon sets, the newest one |
@@ -63,6 +63,25 @@ const r = await fetch(`${process.env.REMOTE_DATA_URL}/media/upload`, {
 })
 const { item } = await r.json() // item.url — the permanent address of the file
 ```
+
+## Whose file (node step 654-2)
+
+The owner of the node, 2026-11-05: «объектное хранилище должно быть обновлено не только для использования глубинной памятью но и для
+использования просто внутри элемента»; in both node types.
+
+- **Every record has an owner and a visibility** (`owner`, `visibility`). A file uploaded with an element's key is that element's; with
+  the node key — the node's. Everything kept before 654-2 is the node's and public, as it was served.
+- **An element sees** its own records and the node's public ones: the list, the file, the thumbnail. It changes, trims and deletes only
+  its own; another element's record answers 404, the same as a missing one. Icon sets the same: its own and the node's; the node's
+  current set never becomes an element's set, and an element's never becomes everyone's.
+- **A private file leaves only when asked by name:** `GET /media/:id/file?private=1` (and `/thumb`) with the owner's key or the node key.
+  The public route of every element (`/api/media/<id>/file`, the node key, no flag) gets 404 for a private file — so a file the deep
+  memory keeps (it uploads them private and marks the ones it kept before) is never served by a page. ✗ Measured 2026-11-05 before
+  this: the memory's `anna-650.txt` was served to anyone through the node's temporary address. A private file is sent with
+  `Cache-Control: private, no-store`.
+- **The node sees all:** every record, `?owner=<id>` for one element's, and `PATCH { owner }` gives a file to an element or back.
+- **What it does not do:** the files lie in one folder of this element on the disk; all elements run as one user of the computer, and
+  an element's agent is held off the neighbours' files by the node's boundary hook on named paths, not by the operating system.
 
 ## Where things live
 
