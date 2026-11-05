@@ -1,77 +1,34 @@
 {
-  "title": "Fractera Storage — files and images of your node",
-  "description": "Object storage of the node: elements upload pictures, videos and documents and get a stable address for each file. Programs reach it with the node key.",
-  "keywords": "",
+  "title": "Files and pictures for every element of your node",
+  "description": "The object storage of a Fractera node keeps the pictures, videos and documents of every element, each with a permanent address, on your own computer.",
+  "keywords": "object storage, media library, files, pictures, videos, thumbnails, permanent address",
   "blocks": [
-    {
-      "kind": "block-hero-centered",
-      "pill": "Agentic engineering infrastructure",
-      "title": "Files and images of your node",
-      "description": "Elements upload pictures, videos and documents here and get a stable address for each file. Programs talk to it with the node key.",
-      "bid": "pb7gp"
-    },
-    {
-      "kind": "text-list",
-      "items": [
-        "Uploads up to 200 MB",
-        "Thumbnails, blurred placeholders and video trimming on the server",
-        "A full icon set for a site from one image"
-      ],
-      "bid": "rkmqk"
-    },
-    {
-      "kind": "text-small",
-      "text": "/media · sharp · ffmpeg",
-      "bid": "b3yau"
-    },
-    {
-      "kind": "block-section-head",
-      "id": "does",
-      "badge": "Doors",
-      "title": "What it does",
-      "bid": "f7o3z"
-    },
-    {
-      "kind": "text-h3",
-      "text": "Upload",
-      "bid": "rnjfx"
-    },
-    {
-      "kind": "text-p",
-      "text": "A file goes in once and gets a permanent address. For a picture the element keeps its size and a tiny blurred copy, so a page can show a placeholder while the picture loads.",
-      "bid": "hxzs3"
-    },
-    {
-      "kind": "text-h3",
-      "text": "Video",
-      "bid": "qfr6s"
-    },
-    {
-      "kind": "text-p",
-      "text": "The server measures the length of a video and trims it to the part you keep, copying the streams when it can and re-encoding only when the cut falls between keyframes.",
-      "bid": "w85fm"
-    },
-    {
-      "kind": "text-h3",
-      "text": "Icons",
-      "bid": "raa90"
-    },
-    {
-      "kind": "text-p",
-      "text": "From one image the element makes the favicon, the app icons and the picture shown when a page is shared.",
-      "bid": "bwxzy"
-    },
-    {
-      "kind": "block-section-head",
-      "id": "address",
-      "badge": "Address",
-      "title": "The same address as before",
-      "bid": "clnnc"
-    },
-    {
-      "kind": "text-p",
-      "text": "Elements still call /media on the database element, and the database element passes the request here. Stored files keep their old addresses.",
-      "bid": "v49ay"
-    }
+    {"kind": "widget-static-storage-landing", "bid": "swl01"},
+    {"kind": "block-hero-centered", "pill": "OpenSource Web4 agent & app starter kit", "title": "Files and pictures for every element of your node", "description": "Every element keeps its pictures, videos and documents here, and each file gets an address that never changes. Thumbnails, blurred placeholders, video trimming and site icons come with it, on your own computer.", "cta": {"label": "Connect your element", "href": "#connect"}, "secondary": {"label": "Under the hood", "href": "#hood"}, "bid": "shr01"},
+    {"kind": "block-section-head", "id": "route", "title": "How a file goes", "bid": "ssr01"},
+    {"kind": "text-h4", "text": "An element sends a file", "bid": "sr101"},
+    {"kind": "text-p", "text": "It uploads a picture, a video or a document through the database element, up to 200 MB.", "bid": "sr102"},
+    {"kind": "text-h4", "text": "The storage keeps it", "bid": "sr201"},
+    {"kind": "text-p", "text": "The file and its record stay in the element's folder on this computer, never in git.", "bid": "sr202"},
+    {"kind": "text-h4", "text": "It gets an address", "bid": "sr301"},
+    {"kind": "text-p", "text": "The address points at the database element, so it never changes when the storage moves.", "bid": "sr302"},
+    {"kind": "text-h4", "text": "Pages show it", "bid": "sr401"},
+    {"kind": "text-p", "text": "Thumbnails, blurred placeholders and trimmed videos are made from the same file.", "bid": "sr402"},
+    {"kind": "text-small", "text": "Through the Cloudflare tunnel every door answers 404, with a key or without.", "bid": "srs01"},
+    {"kind": "block-section-head", "id": "solves", "title": "What changes for you", "bid": "sss01"},
+    {"kind": "text-table", "head": ["Without it", "With the object storage"], "rows": [["Every element would keep files its own way", "Every element keeps them in one storage with one door"], ["A file's link breaks when the server moves", "The address stays the same when the storage moves"], ["Thumbnails and icons are made by hand", "The storage makes thumbnails, placeholders and site icons itself"], ["Your files sit on someone else's server", "They stay on your computer, inside your node"]], "bid": "sst01"},
+    {"kind": "block-section-head", "id": "spaces", "title": "Whose memory it is", "bid": "ssp01"},
+    {"kind": "block-access-map", "outer": {"title": "The main agent of the node", "text": "Opens every file the deep memory keeps."}, "spaces": [{"title": "Mom's element", "text": "Opens only the files said through her element."}, {"title": "Son's element", "text": "Opens only his own files."}, {"title": "Your site", "text": "Opens only its own files."}], "between": "The deep memory decides whose file it is, and another element's file answers 404.", "bid": "ssp02"},
+    {"kind": "text-p", "text": "The storage keeps every file of the node in one library. When the deep memory keeps a file, it writes whose it is: the file's card goes into the element's own collection and its row carries the element's space.", "bid": "ssp03"},
+    {"kind": "text-p", "text": "When an element asks the deep memory for a file, the memory opens only files of that element's space; another element's file answers 404. The main agent opens them all.", "bid": "ssp04"},
+    {"kind": "text-p", "text": "The library itself is shared: it opens with the node's data key, and you own the computer it sits on.", "bid": "ssp05"},
+    {"kind": "block-section-head", "id": "connect", "title": "Connect your element", "bid": "ssc01"},
+    {"kind": "text-p", "text": "Every element of the node already has the database address and the data key. Upload a picture and keep its address:", "bid": "ssc02"},
+    {"kind": "text-code", "text": "const form = new FormData()\nform.append('file', new Blob([bytes], { type: 'image/png' }), 'logo.png')\nform.append('title', 'Logo')\nconst r = await fetch(`${process.env.REMOTE_DATA_URL}/media/upload`, {\n  method: 'POST',\n  headers: { 'X-Data-Secret': process.env.DATA_SECRET },\n  body: form,\n})\nconst { item } = await r.json() // item.url — the permanent address of the file", "bid": "ssc03"},
+    {"kind": "text-p", "text": "item.url is the permanent address of the file. PATCH /media/:id changes its title, and DELETE /media/:id removes the file and its record.", "bid": "ssc04"},
+    {"kind": "block-section-head", "id": "hood", "title": "Under the hood", "bid": "ssh01"},
+    {"kind": "text-table", "head": ["Part", "What it does"], "rows": [["The library", "Files and records in the element's folder (data/media.db, storage/, icons/), never in git"], ["The address", "Points at the database element, so a stored address never changes when the storage moves"], ["Pictures", "A 200×200 thumbnail and a blurred placeholder for every picture"], ["Videos", "Trimming by seconds with ffmpeg: a stream copy, or a re-encode when the cut misses a keyframe"], ["Site icons", "From one picture: a favicon, app icons, a share picture and a manifest"], ["The lock", "The node's data key or a privileged session; through the Cloudflare tunnel every door answers 404"]], "bid": "ssh02"},
+    {"kind": "block-section-head", "id": "credits", "title": "Open source", "bid": "ssx01"},
+    {"kind": "text-p", "text": "Built by Fractera for the [Lagrix](https://lagrix.dev) protocol and for any web2 project that needs to keep files. MIT license, the code is at [github.com/Fractera/fractera-storage-starter](https://github.com/Fractera/fractera-storage-starter).", "bid": "sxp01"}
   ]
 }
