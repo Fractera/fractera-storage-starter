@@ -3,32 +3,288 @@
   "description": "The object storage of a Fractera node keeps the pictures, videos and documents of every element, each with a permanent address, on your own computer.",
   "keywords": "object storage, media library, files, pictures, videos, thumbnails, permanent address",
   "blocks": [
-    {"kind": "widget-static-storage-landing", "bid": "swl01"},
-    {"kind": "block-hero-centered", "pill": "OpenSource Web4 agent & app starter kit", "title": "Files and pictures for every element of your node", "description": "Every element keeps its pictures, videos and documents here, and each file gets an address that never changes. Thumbnails, blurred placeholders, video trimming and site icons come with it, on your own computer.", "cta": {"label": "Connect your element", "href": "#connect"}, "secondary": {"label": "Under the hood", "href": "#hood"}, "bid": "shr01"},
-    {"kind": "block-section-head", "id": "route", "title": "How a file goes", "bid": "ssr01"},
-    {"kind": "text-h4", "text": "An element sends a file", "bid": "sr101"},
-    {"kind": "text-p", "text": "It uploads a picture, a video or a document through the database element, up to 200 MB.", "bid": "sr102"},
-    {"kind": "text-h4", "text": "The storage keeps it", "bid": "sr201"},
-    {"kind": "text-p", "text": "The file and its record stay in the element's folder on this computer, never in git.", "bid": "sr202"},
-    {"kind": "text-h4", "text": "It gets an address", "bid": "sr301"},
-    {"kind": "text-p", "text": "The address points at the database element, so it never changes when the storage moves.", "bid": "sr302"},
-    {"kind": "text-h4", "text": "Pages show it", "bid": "sr401"},
-    {"kind": "text-p", "text": "Thumbnails, blurred placeholders and trimmed videos are made from the same file.", "bid": "sr402"},
-    {"kind": "text-small", "text": "Through the Cloudflare tunnel every door answers 404, with a key or without.", "bid": "srs01"},
-    {"kind": "block-section-head", "id": "solves", "title": "What changes for you", "bid": "sss01"},
-    {"kind": "text-table", "head": ["Without it", "With the object storage"], "rows": [["Every element would keep files its own way", "Every element keeps them in one storage with one door"], ["A file's link breaks when the server moves", "The address stays the same when the storage moves"], ["Thumbnails and icons are made by hand", "The storage makes thumbnails, placeholders and site icons itself"], ["Your files sit on someone else's server", "They stay on your computer, inside your node"]], "bid": "sst01"},
-    {"kind": "block-section-head", "id": "spaces", "title": "Whose file it is", "bid": "ssp01"},
-    {"kind": "block-access-map", "outer": {"title": "The main agent of the node", "text": "Opens every file of every element and sees whose each one is."}, "spaces": [{"title": "Mom's element", "text": "Opens only her element's files, private ones too."}, {"title": "Son's element", "text": "Opens only his own files."}, {"title": "Your site", "text": "Opens its own files and the node's public pictures."}], "between": "Each element opens the storage with its own key, and another element's file answers 404, the same as a missing one.", "bid": "ssp02"},
-    {"kind": "text-p", "text": "Every file has an owner and a visibility. A file uploaded with an element's own key belongs to that element. A page picture stays public; a private file leaves only when its owner asks for it by name, so no page can serve it.", "bid": "ssp03"},
-    {"kind": "text-p", "text": "The deep memory keeps every file it is given as a private file of the element it was said through. The main agent opens them all with the node's key.", "bid": "ssp04"},
-    {"kind": "text-p", "text": "The storage keeps the doors apart, not the disk: every file lies in this element's folder on your computer, and all elements run as one user of it.", "bid": "ssp05"},
-    {"kind": "block-section-head", "id": "connect", "title": "Connect your element", "bid": "ssc01"},
-    {"kind": "text-p", "text": "Every element of the node already has the database address and its own key. Upload a picture and keep its address:", "bid": "ssc02"},
-    {"kind": "text-code", "text": "const form = new FormData()\nform.append('file', new Blob([bytes], { type: 'image/png' }), 'logo.png')\nform.append('title', 'Logo')\nconst r = await fetch(`${process.env.REMOTE_DATA_URL}/media/upload`, {\n  method: 'POST',\n  headers: { 'X-Element-Key': process.env.ELEMENT_KEY },\n  body: form,\n})\nconst { item } = await r.json() // item.url — the permanent address of the file", "bid": "ssc03"},
-    {"kind": "text-p", "text": "item.url is the permanent address of the file. Add visibility=private to the form to keep a file for your element alone. PATCH /media/:id changes its title, and DELETE /media/:id removes the file and its record.", "bid": "ssc04"},
-    {"kind": "block-section-head", "id": "hood", "title": "Under the hood", "bid": "ssh01"},
-    {"kind": "text-table", "head": ["Part", "What it does"], "rows": [["The library", "Files and records in the element's folder (data/media.db, storage/, icons/), never in git"], ["The address", "Points at the database element, so a stored address never changes when the storage moves"], ["Pictures", "A 200×200 thumbnail and a blurred placeholder for every picture"], ["Videos", "Trimming by seconds with ffmpeg: a stream copy, or a re-encode when the cut misses a keyframe"], ["Site icons", "From one picture: a favicon, app icons, a share picture and a manifest"], ["The lock", "Each element's own key opens its own files and the node's public ones; the node's data key or a privileged session opens all; through the Cloudflare tunnel every door answers 404"]], "bid": "ssh02"},
-    {"kind": "block-section-head", "id": "credits", "title": "Open source", "bid": "ssx01"},
-    {"kind": "text-p", "text": "Built by Fractera for the [Lagrix](https://lagrix.dev) protocol and for any web2 project that needs to keep files. MIT license, the code is at [github.com/Fractera/fractera-storage-starter](https://github.com/Fractera/fractera-storage-starter).", "bid": "sxp01"}
+    {
+      "kind": "widget-static-storage-landing",
+      "bid": "swl01"
+    },
+    {
+      "kind": "block-hero-centered",
+      "pill": "OpenSource Web4 agent & app starter kit",
+      "title": "Files and pictures for every element of your node",
+      "description": "Every element keeps its pictures, videos and documents here, and each file gets an address that never changes. Thumbnails, blurred placeholders, video trimming and site icons come with it, on your own computer.",
+      "cta": {
+        "label": "Connect your element",
+        "href": "#connect"
+      },
+      "secondary": {
+        "label": "Under the hood",
+        "href": "#hood"
+      },
+      "bid": "shr01"
+    },
+    {
+      "kind": "block-section-head",
+      "id": "route",
+      "title": "How a file goes",
+      "bid": "ssr01"
+    },
+    {
+      "kind": "text-h4",
+      "text": "An element sends a file",
+      "bid": "sr101"
+    },
+    {
+      "kind": "text-p",
+      "text": "It uploads a picture, a video or a document through the database element, up to 200 MB.",
+      "bid": "sr102"
+    },
+    {
+      "kind": "text-h4",
+      "text": "The storage keeps it",
+      "bid": "sr201"
+    },
+    {
+      "kind": "text-p",
+      "text": "The file and its record stay in the element's folder on this computer, never in git.",
+      "bid": "sr202"
+    },
+    {
+      "kind": "text-h4",
+      "text": "It gets an address",
+      "bid": "sr301"
+    },
+    {
+      "kind": "text-p",
+      "text": "The address points at the database element, so it never changes when the storage moves.",
+      "bid": "sr302"
+    },
+    {
+      "kind": "text-h4",
+      "text": "Pages show it",
+      "bid": "sr401"
+    },
+    {
+      "kind": "text-p",
+      "text": "Thumbnails, blurred placeholders and trimmed videos are made from the same file.",
+      "bid": "sr402"
+    },
+    {
+      "kind": "text-small",
+      "text": "Through the Cloudflare tunnel every door answers 404, with a key or without.",
+      "bid": "srs01"
+    },
+    {
+      "kind": "block-section-head",
+      "id": "power",
+      "title": "On from the start",
+      "bid": "q0000"
+    },
+    {
+      "kind": "text-p",
+      "text": "This element starts with the node. The node holds the switch: the architect turns it off or on with a word to the main agent, or on the element's settings page in the core.",
+      "bid": "q0001"
+    },
+    {
+      "kind": "block-section-head",
+      "id": "solves",
+      "title": "What changes for you",
+      "bid": "sss01"
+    },
+    {
+      "kind": "text-table",
+      "head": [
+        "Without it",
+        "With the object storage"
+      ],
+      "rows": [
+        [
+          "Every element would keep files its own way",
+          "Every element keeps them in one storage with one door"
+        ],
+        [
+          "A file's link breaks when the server moves",
+          "The address stays the same when the storage moves"
+        ],
+        [
+          "Thumbnails and icons are made by hand",
+          "The storage makes thumbnails, placeholders and site icons itself"
+        ],
+        [
+          "Your files sit on someone else's server",
+          "They stay on your computer, inside your node"
+        ]
+      ],
+      "bid": "sst01"
+    },
+    {
+      "kind": "block-section-head",
+      "id": "spaces",
+      "title": "Whose file it is",
+      "bid": "ssp01"
+    },
+    {
+      "kind": "block-access-map",
+      "outer": {
+        "title": "The main agent of the node",
+        "text": "Opens every file of every element and sees whose each one is."
+      },
+      "spaces": [
+        {
+          "title": "Mom's element",
+          "text": "Opens only her element's files, private ones too."
+        },
+        {
+          "title": "Son's element",
+          "text": "Opens only his own files."
+        },
+        {
+          "title": "Your site",
+          "text": "Opens its own files and the node's public pictures."
+        }
+      ],
+      "between": "Each element opens the storage with its own key, and another element's file answers 404, the same as a missing one.",
+      "bid": "ssp02"
+    },
+    {
+      "kind": "text-p",
+      "text": "Every file has an owner and a visibility. A file uploaded with an element's own key belongs to that element. A page picture stays public; a private file leaves only when its owner asks for it by name, so no page can serve it.",
+      "bid": "ssp03"
+    },
+    {
+      "kind": "text-p",
+      "text": "The deep memory keeps every file it is given as a private file of the element it was said through. The main agent opens them all with the node's key.",
+      "bid": "ssp04"
+    },
+    {
+      "kind": "text-p",
+      "text": "The storage keeps the doors apart, not the disk: every file lies in this element's folder on your computer, and all elements run as one user of it.",
+      "bid": "ssp05"
+    },
+    {
+      "kind": "block-section-head",
+      "id": "connect",
+      "title": "Connect your element",
+      "bid": "ssc01"
+    },
+    {
+      "kind": "text-p",
+      "text": "Every element of the node already has the database address and its own key. Upload a picture and keep its address:",
+      "bid": "ssc02"
+    },
+    {
+      "kind": "text-code",
+      "text": "const form = new FormData()\nform.append('file', new Blob([bytes], { type: 'image/png' }), 'logo.png')\nform.append('title', 'Logo')\nconst r = await fetch(`${process.env.REMOTE_DATA_URL}/media/upload`, {\n  method: 'POST',\n  headers: { 'X-Element-Key': process.env.ELEMENT_KEY },\n  body: form,\n})\nconst { item } = await r.json() // item.url — the permanent address of the file",
+      "bid": "ssc03"
+    },
+    {
+      "kind": "text-p",
+      "text": "item.url is the permanent address of the file. Add visibility=private to the form to keep a file for your element alone. PATCH /media/:id changes its title, and DELETE /media/:id removes the file and its record.",
+      "bid": "ssc04"
+    },
+    {
+      "kind": "block-section-head",
+      "id": "hood",
+      "title": "Under the hood",
+      "bid": "ssh01"
+    },
+    {
+      "kind": "text-table",
+      "head": [
+        "Part",
+        "What it does"
+      ],
+      "rows": [
+        [
+          "The library",
+          "Files and records in the element's folder (data/media.db, storage/, icons/), never in git"
+        ],
+        [
+          "The address",
+          "Points at the database element, so a stored address never changes when the storage moves"
+        ],
+        [
+          "Pictures",
+          "A 200×200 thumbnail and a blurred placeholder for every picture"
+        ],
+        [
+          "Videos",
+          "Trimming by seconds with ffmpeg: a stream copy, or a re-encode when the cut misses a keyframe"
+        ],
+        [
+          "Site icons",
+          "From one picture: a favicon, app icons, a share picture and a manifest"
+        ],
+        [
+          "The lock",
+          "Each element's own key opens its own files and the node's public ones; the node's data key or a privileged session opens all; through the Cloudflare tunnel every door answers 404"
+        ]
+      ],
+      "bid": "ssh02"
+    },
+    {
+      "kind": "block-section-head",
+      "id": "builder",
+      "title": "Your own builder comes with it",
+      "bid": "q0002"
+    },
+    {
+      "kind": "text-p",
+      "text": "Every element of the node comes with its own Claude Code agent and can get its own Telegram bot. When something in this element should change, write to its bot from your phone, and the agent updates the logic or the design.",
+      "bid": "q0003"
+    },
+    {
+      "kind": "text-p",
+      "text": "The agent works only in its element's folder and never reads the whole node, so each change costs fewer tokens. Your Claude Code subscription pays for it.",
+      "bid": "q0004"
+    },
+    {
+      "kind": "text-list",
+      "items": [
+        "The element's bot is connected in the core, on its «Telegram» page.",
+        "The agent returns a commit; you look at it in «Preview» and accept it or turn it down.",
+        "At the computer, the agent's terminal is in the core, in this element's «Build»."
+      ],
+      "bid": "q0005"
+    },
+    {
+      "kind": "block-section-head",
+      "id": "credits",
+      "title": "Open source",
+      "bid": "ssx01"
+    },
+    {
+      "kind": "text-p",
+      "text": "Built by Fractera for the [Lagrix](https://lagrix.dev) protocol and for any web2 project that needs to keep files. MIT license, the code is at [github.com/Fractera/fractera-storage-starter](https://github.com/Fractera/fractera-storage-starter).",
+      "bid": "sxp01"
+    },
+    {
+      "kind": "block-section-head",
+      "id": "faq",
+      "title": "Questions and answers",
+      "bid": "q0006"
+    },
+    {
+      "kind": "block-faq",
+      "title": "Questions and answers",
+      "items": [
+        {
+          "q": "How large can a file be?",
+          "a": "Up to 200 MB, sent through the data element."
+        },
+        {
+          "q": "Will a file's address break if the storage moves?",
+          "a": "No. The address points at the data element, so a saved address stays the same."
+        },
+        {
+          "q": "Can a file stay private?",
+          "a": "Yes. Add visibility=private when you upload it: it leaves only when its owner asks for it by name, so no page shows it."
+        },
+        {
+          "q": "Can I keep backups?",
+          "a": "Yes. The element is ready for its programmer agent to set up backups on a schedule or by hand: tell the element's agent in Telegram or in the terminal. It makes no copies on its own until you ask."
+        }
+      ],
+      "bid": "q0007"
+    }
   ]
 }
