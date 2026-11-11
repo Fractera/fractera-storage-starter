@@ -2,13 +2,13 @@
   "title": "Files and pictures for every element of your node",
   "description": "The object storage of a Fractera node keeps the pictures, videos and documents of every element, each with a permanent address, on your own computer.",
   "keywords": "object storage, media library, files, pictures, videos, thumbnails, permanent address",
-  "blocks": [
+  "body": [
     {
       "kind": "widget-static-storage-landing",
       "bid": "swl01"
     },
     {
-      "kind": "block-hero-centered",
+      "kind": "section-hero-centered",
       "pill": "OpenSource Web4 agent & app starter kit",
       "title": "Files and pictures for every element of your node",
       "description": "Every element keeps its pictures, videos and documents here, and each file gets an address that never changes. Thumbnails, blurred placeholders, video trimming and site icons come with it, on your own computer.",
@@ -23,7 +23,7 @@
       "bid": "shr01"
     },
     {
-      "kind": "block-section-head",
+      "kind": "section-head",
       "id": "route",
       "title": "How a file goes",
       "bid": "ssr01"
@@ -74,7 +74,7 @@
       "bid": "srs01"
     },
     {
-      "kind": "block-section-head",
+      "kind": "section-head",
       "id": "power",
       "title": "Always on",
       "bid": "q0000"
@@ -85,7 +85,7 @@
       "bid": "q0001"
     },
     {
-      "kind": "block-section-head",
+      "kind": "section-head",
       "id": "solves",
       "title": "What changes for you",
       "bid": "sss01"
@@ -117,13 +117,13 @@
       "bid": "sst01"
     },
     {
-      "kind": "block-section-head",
+      "kind": "section-head",
       "id": "spaces",
       "title": "Whose file it is",
       "bid": "ssp01"
     },
     {
-      "kind": "block-access-map",
+      "kind": "section-access-map",
       "outer": {
         "title": "The main agent of the node",
         "text": "Opens every file of every element and sees whose each one is."
@@ -161,7 +161,7 @@
       "bid": "ssp05"
     },
     {
-      "kind": "block-section-head",
+      "kind": "section-head",
       "id": "connect",
       "title": "Connect your element",
       "bid": "ssc01"
@@ -182,7 +182,7 @@
       "bid": "ssc04"
     },
     {
-      "kind": "block-section-head",
+      "kind": "section-head",
       "id": "hood",
       "title": "Under the hood",
       "bid": "ssh01"
@@ -222,7 +222,7 @@
       "bid": "ssh02"
     },
     {
-      "kind": "block-section-head",
+      "kind": "section-head",
       "id": "builder",
       "title": "Your own builder comes with it",
       "bid": "q0002"
@@ -247,7 +247,7 @@
       "bid": "q0005"
     },
     {
-      "kind": "block-section-head",
+      "kind": "section-head",
       "id": "credits",
       "title": "Open source",
       "bid": "ssx01"
@@ -258,13 +258,13 @@
       "bid": "sxp01"
     },
     {
-      "kind": "block-section-head",
+      "kind": "section-head",
       "id": "faq",
       "title": "Questions and answers",
       "bid": "q0006"
     },
     {
-      "kind": "block-faq",
+      "kind": "section-faq",
       "title": "Questions and answers",
       "items": [
         {

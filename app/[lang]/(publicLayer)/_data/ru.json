@@ -2,13 +2,13 @@
   "title": "Файлы и картинки для каждого элемента вашего узла",
   "description": "Объектное хранилище узла Fractera держит картинки, видео и документы каждого элемента, у каждого файла постоянный адрес, на вашем компьютере.",
   "keywords": "объектное хранилище, медиатека, файлы, картинки, видео, превью, постоянный адрес",
-  "blocks": [
+  "body": [
     {
       "kind": "widget-static-storage-landing",
       "bid": "swl01"
     },
     {
-      "kind": "block-hero-centered",
+      "kind": "section-hero-centered",
       "pill": "OpenSource Web4 agent & app starter kit",
       "title": "Файлы и картинки для каждого элемента вашего узла",
       "description": "Каждый элемент хранит здесь свои картинки, видео и документы, и у каждого файла адрес, который не меняется. Превью, размытые заглушки, обрезка видео и иконки сайта идут вместе с ним, на вашем компьютере.",
@@ -23,7 +23,7 @@
       "bid": "shr01"
     },
     {
-      "kind": "block-section-head",
+      "kind": "section-head",
       "id": "route",
       "title": "Как идёт файл",
       "bid": "ssr01"
@@ -74,7 +74,7 @@
       "bid": "srs01"
     },
     {
-      "kind": "block-section-head",
+      "kind": "section-head",
       "id": "power",
       "title": "Работает всегда",
       "bid": "q0000"
@@ -85,7 +85,7 @@
       "bid": "q0001"
     },
     {
-      "kind": "block-section-head",
+      "kind": "section-head",
       "id": "solves",
       "title": "Что меняется для вас",
       "bid": "sss01"
@@ -117,13 +117,13 @@
       "bid": "sst01"
     },
     {
-      "kind": "block-section-head",
+      "kind": "section-head",
       "id": "spaces",
       "title": "Чей это файл",
       "bid": "ssp01"
     },
     {
-      "kind": "block-access-map",
+      "kind": "section-access-map",
       "outer": {
         "title": "Главный агент узла",
         "text": "Открывает все файлы всех элементов и видит, чей каждый."
@@ -161,7 +161,7 @@
       "bid": "ssp05"
     },
     {
-      "kind": "block-section-head",
+      "kind": "section-head",
       "id": "connect",
       "title": "Подключите свой элемент",
       "bid": "ssc01"
@@ -182,7 +182,7 @@
       "bid": "ssc04"
     },
     {
-      "kind": "block-section-head",
+      "kind": "section-head",
       "id": "hood",
       "title": "Что под капотом",
       "bid": "ssh01"
@@ -222,7 +222,7 @@
       "bid": "ssh02"
     },
     {
-      "kind": "block-section-head",
+      "kind": "section-head",
       "id": "builder",
       "title": "Свой строитель в комплекте",
       "bid": "q0002"
@@ -247,7 +247,7 @@
       "bid": "q0005"
     },
     {
-      "kind": "block-section-head",
+      "kind": "section-head",
       "id": "credits",
       "title": "Открытый код",
       "bid": "ssx01"
@@ -258,13 +258,13 @@
       "bid": "sxp01"
     },
     {
-      "kind": "block-section-head",
+      "kind": "section-head",
       "id": "faq",
       "title": "Вопросы и ответы",
       "bid": "q0006"
     },
     {
-      "kind": "block-faq",
+      "kind": "section-faq",
       "title": "Вопросы и ответы",
       "items": [
         {
